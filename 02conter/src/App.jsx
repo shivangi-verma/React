@@ -17,10 +17,10 @@ function App() {
     <>
       <h1>Chai aur React</h1>
       <h2>Counter : {counter}</h2>
-      <button onClick={adddValue}>Increase Value</button>
+      <button onClick={adddValue}>Increase Value {counter} </button>
       <br />
       <br />
-      <button onClick={reduceValue}>Decrease Value</button>
+      <button onClick={reduceValue}>Decrease Value {counter}</button>
     </>
   );
 }
