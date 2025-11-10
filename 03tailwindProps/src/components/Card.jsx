@@ -1,6 +1,6 @@
 import React from "react";
 
-function Card({ username, btnText }) {
+function Card({ username, btnText='Visit Me' }) {
   return (
     <div className=" m-6 ">
       <div className="md:max-w-sm w-full p-6 rounded-xl shadow-xl bg-black border border-zinc-800 hover:border-white transition-all duration-300 hover:transform hover:scale-105 group">
