@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 import "./App.css";
 
 function App() {
@@ -7,18 +7,31 @@ function App() {
   const [charAllowed, setCharAllowed] = useState(false);
   const [pass, setPass] = useState("");
 
+  // useref hook
+  const passwordRef = useRef(null);
+
   const passwordGenerator = useCallback(() => {
     let pass = "";
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     if (numberAllowed) str += "0123456789";
     if (charAllowed) str += "!@#$%^&*()_+{}[]/.?<>:;~";
 
-    for (let i = 1; i <= Array.length; i++) {
+    for (let i = 1; i <= length; i++) {
       let char = Math.floor(Math.random() * str.length + 1);
-      pass = str.charAt(char);
+      pass += str.charAt(char);
     }
     setPass(pass);
   }, [length, numberAllowed, charAllowed, setPass]);
+
+  const copyPasswordToClipboard = useCallback(() => {
+    passwordRef.current?.select();
+    // passwordRef.current?.setSelectionRange(0, 3);
+    window.navigator.clipboard.writeText(pass);
+  }, [pass]);
+
+  useEffect(() => {
+    passwordGenerator();
+  }, [length, numberAllowed, charAllowed, passwordGenerator]);
 
   return (
     <>
@@ -30,9 +43,13 @@ function App() {
           className="p-2 px-4 border border-white rounded-xl w-sm "
           value={pass}
           readOnly
+          ref={passwordRef}
         />
         {/* copy button */}
-        <button className="bg-blue-500 hover:bg-blue-800 rounded-xl p-2 font-bold px-4 ">
+        <button
+          className="bg-blue-500 hover:bg-blue-800 rounded-xl p-2 font-bold px-4 "
+          onClick={copyPasswordToClipboard}
+        >
           COPY
         </button>
         <div className="flex p-2  justify-center">
@@ -67,7 +84,7 @@ function App() {
             value="value1"
             className="p-1 m-1"
             onChange={() => {
-              setCharAllowed((prev) => !prev);
+              setNumberAllowed((prev) => !prev);
             }}
           />
           {/*  characters label */}
@@ -83,6 +100,9 @@ function App() {
             name="choices"
             value="value1"
             className="p-1 m-1"
+            onChange={() => {
+              setCharAllowed((prev) => !prev);
+            }}
           />
         </div>
       </div>
