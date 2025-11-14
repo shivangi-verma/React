@@ -5,10 +5,12 @@ import { createRoot } from "react-dom/client";
 import PassGen from "./components/PassGen.jsx";
 import "./index.css";
 import App from "./App.jsx";
+import NewPassGen from "./components/NewPassGen.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     {/* <App /> */}
-    <PassGen/>
+    {/* <PassGen/> */}
+    <NewPassGen />
   </StrictMode>
 );
