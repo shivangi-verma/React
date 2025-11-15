@@ -1,8 +1,7 @@
 import React from "react";
 
 import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import PassGen from "./components/PassGen.jsx";
+import { createRoot } from "react-dom/client"; 
 import "./index.css";
 import App from "./App.jsx";
 import NewPassGen from "./components/NewPassGen.jsx";
