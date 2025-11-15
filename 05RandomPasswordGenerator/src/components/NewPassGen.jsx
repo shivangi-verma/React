@@ -7,20 +7,25 @@ function NewPassGen() {
       <h1 className="text-[170px] font-[Work_Sans] tracking-[-0.6rem] text-[#A9C5EA66]">
         Password Generator
       </h1>
-      <h1 className="text-[120px] font-[DM_Sans] tracking-[-0.1rem] text-[#11121440] text-center">
-        RandomPass
-      </h1>
+      <div className="container">
+        <h1 className="text-[120px] font-[DM_Sans] tracking-[-0.1rem] text-[#11121440] text-center text">
+          RandomPass
+        </h1>
+      </div>
       {/* controls */}
       <div className="controls flex justify-center gap-4  items-center">
         {/* slider */}
         <div className="slider flex bg-gray-100  p-2 rounded-2xl w-xs justify-evenly items-center">
-          <MouseScroll size={32} />
-          <span className="p-2">8</span>
-          <span className="p-2">12</span>
-          <span className="p-2">16</span>
-          <span className="p-2">24</span>
+          <MouseScroll size={32} weight="light" className="rotate-90" />
+          <span className="p-2 cursor-pointer">8</span>
+          <span className="p-2 cursor-pointer">12</span>
+          <span className="p-2 cursor-pointer">16</span>
+          <span className="p-2 cursor-pointer">24</span>
           <span className="bg-orange-200 text-white p-[8px] px-[4px] rounded-xl">
-            <span className="bg-orange-500  p-[6px] rounded-xl"> 32</span>
+            <span className="bg-orange-500  p-[6px] rounded-xl cursor-pointer">
+              {" "}
+              32
+            </span>
           </span>
         </div>
         {/* num */}
