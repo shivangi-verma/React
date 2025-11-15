@@ -1,15 +1,75 @@
 import { MouseScroll } from "@phosphor-icons/react";
-import React from "react";
+import React, { useState, useCallback, useEffect, useRef } from "react";
 
 function NewPassGen() {
+  const [length, setLength] = useState(6);
+  const [numberAllowed, setNumberAllowed] = useState(false);
+  const [charAllowed, setCharAllowed] = useState(false);
+  const [pass, setPass] = useState("");
+
+  // useref hook
+  const passwordRef = useRef(null);
+
+  // const passwordGenerator = useCallback(() => {
+  //   let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+  //   if (numberAllowed) str += "0123456789";
+  //   if (charAllowed) str += "!@#$%^&*()_+{}[]/.?<>:;~";
+
+  //   const array = new Uint32Array(length);
+  //   crypto.getRandomValues(array);
+
+  //   const newPass = Array.from(array, (num) => str[num % str.length]).join("");
+  //   setPass(newPass);
+  // }, [length, numberAllowed, charAllowed]);
+
+  // const copyPasswordToClipboard = useCallback(() => {
+  //   passwordRef.current?.select();
+  //   window.navigator.clipboard.writeText(pass);
+  // }, [pass]);
+
+  const passwordGenerator = useCallback(() => {
+    let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    if (numberAllowed) str += "0123456789";
+    if (charAllowed) str += "!@#$%^&*()_+{}[]/.?<>:;~";
+
+    const array = new Uint32Array(length);
+    crypto.getRandomValues(array);
+
+    let newPass = "";
+
+    for (let i = 0; i < length; i++) {
+      newPass += str[array[i] % str.length];
+    }
+
+    // ensure at least one number if numberAllowed
+    if (numberAllowed && !/[0-9]/.test(newPass)) {
+      const randomIndex = Math.floor(Math.random() * length);
+      const randomDigit = Math.floor(Math.random() * 10).toString();
+      newPass =
+        newPass.substring(0, randomIndex) +
+        randomDigit +
+        newPass.substring(randomIndex + 1);
+    }
+
+    setPass(newPass);
+  }, [length, numberAllowed, charAllowed]);
+
+  useEffect(() => {
+    passwordGenerator();
+  }, [length, numberAllowed, charAllowed, passwordGenerator]);
+  console.log(pass);
+
   return (
     <>
       <h1 className="text-[170px] font-[Work_Sans] tracking-[-0.6rem] text-[#A9C5EA66]">
         Password Generator
       </h1>
       <div className="container">
-        <h1 className="text-[120px] font-[DM_Sans] tracking-[-0.1rem] text-[#11121440] text-center text">
-          RandomPass
+        <h1
+          className="text-[120px] font-[Inclusive_Sans] tracking-[-0.1rem] text-[#11121440] text-center text"
+          ref={passwordRef}
+        >
+          {pass}
         </h1>
       </div>
       {/* controls */}
@@ -38,10 +98,13 @@ function NewPassGen() {
 
           <input
             type="checkbox"
-            id="option1"
+            id="number"
             name="choices"
             value="value1"
             className=" accent-black"
+            onChange={() => {
+              setNumberAllowed((prev) => !prev);
+            }}
           />
         </div>
         {/* char */}
@@ -54,10 +117,13 @@ function NewPassGen() {
 
           <input
             type="checkbox"
-            id="option1"
+            id="char"
             name="choices"
             value="value1"
             className=" accent-black"
+            onChange={() => {
+              setCharAllowed((prev) => !prev);
+            }}
           />
         </div>
       </div>

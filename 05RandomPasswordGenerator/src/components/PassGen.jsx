@@ -10,21 +10,19 @@ function PassGen() {
   const passwordRef = useRef(null);
 
   const passwordGenerator = useCallback(() => {
-    let pass = "";
     let str = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     if (numberAllowed) str += "0123456789";
     if (charAllowed) str += "!@#$%^&*()_+{}[]/.?<>:;~";
 
-    for (let i = 1; i <= length; i++) {
-      let char = Math.floor(Math.random() * str.length + 1);
-      pass += str.charAt(char);
-    }
+    const array = new Uint32Array(length);
+    crypto.getRandomValues(array);
+
+    pass = Array.from(array, (num) => str[num % str.length]).join("");
     setPass(pass);
-  }, [length, numberAllowed, charAllowed, setPass]);
+  }, [length, numberAllowed, charAllowed]);
 
   const copyPasswordToClipboard = useCallback(() => {
     passwordRef.current?.select();
-    // passwordRef.current?.setSelectionRange(0, 3);
     window.navigator.clipboard.writeText(pass);
   }, [pass]);
 
@@ -33,15 +31,15 @@ function PassGen() {
   }, [length, numberAllowed, charAllowed, passwordGenerator]);
   return (
     <>
-      <h1 className="text-[170px]  text-[#A9C5EA66] font-[Work_Sans] tracking-[-0.06em] p-0 m-0 text-center">
+      <h1 className="text-[170px] text-[#A9C5EA66] font-[Work_Sans] tracking-[-0.06em] p-0 m-0 text-center">
         Password Generator
       </h1>
-      <h1
-        className="text-[120px]  text-[#11121440] font-[DM_Sans] tracking-[-0.02em] p-0 m-0 text-center"
+      <input
+        className="text-[120px] text-[#11121440] font-[DM_Sans] tracking-[-0.02em] p-0 m-0 text-center"
         ref={passwordRef}
-      >
-        {pass}
-      </h1>
+        value={pass}
+        readOnly 
+      />
       <div className="controls flex w-screen justify-center items-center gap-6">
         <div className=" bg-[#F3F3F4] p-4 w-[300px] rounded-3xl  flex justify-evenly items-center">
           {/* numbers label */}
