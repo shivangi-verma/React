@@ -66,7 +66,7 @@ function NewPassGen() {
       </h1>
       <div className="container">
         <h1
-          className="text-[120px] font-[Inclusive_Sans] tracking-[-0.1rem] text-[#11121440] text-center text"
+          className="text-[80px] font-[Inclusive_Sans] tracking-[-0.1rem] text-[#11121440] text-center text"
           ref={passwordRef}
         >
           {pass}
@@ -77,16 +77,49 @@ function NewPassGen() {
         {/* slider */}
         <div className="slider flex bg-gray-100  p-2 rounded-2xl w-xs justify-evenly items-center">
           <MouseScroll size={32} weight="light" className="rotate-90" />
-          <span className="p-2 cursor-pointer">8</span>
-          <span className="p-2 cursor-pointer">12</span>
-          <span className="p-2 cursor-pointer">16</span>
-          <span className="p-2 cursor-pointer">24</span>
-          <span className="bg-orange-200 text-white p-[8px] px-[4px] rounded-xl">
-            <span className="bg-orange-500  p-[6px] rounded-xl cursor-pointer">
+          <button
+            className="p-2 cursor-pointer"
+            onClick={() => {
+              setLength("8");
+            }}
+          >
+            8
+          </button>
+          <button
+            className="p-2 cursor-pointer"
+            onClick={() => {
+              setLength("12");
+            }}
+          >
+            12
+          </button>
+          <button
+            className="p-2 cursor-pointer"
+            onClick={() => {
+              setLength("16");
+            }}
+          >
+            16
+          </button>
+          <button
+            className="p-2 cursor-pointer"
+            onClick={() => {
+              setLength("24");
+            }}
+          >
+            24
+          </button>
+          <div className="bg-orange-200 text-white p-[8px] px-[4px] rounded-xl">
+            <button
+              className="bg-orange-500  p-[6px] rounded-xl cursor-pointer"
+              onClick={() => {
+                setLength("32");
+              }}
+            >
               {" "}
               32
-            </span>
-          </span>
+            </button>
+          </div>
         </div>
         {/* num */}
         <div className="bg-gray-100 rounded-2xl p-4  flex justify-evenly w-xs ">
