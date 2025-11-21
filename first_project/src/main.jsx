@@ -13,6 +13,6 @@ function MyApp() {
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <App />
-    <MyApp />
+    {/* <MyApp /> */}
   </StrictMode>
 );
