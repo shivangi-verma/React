@@ -1,18 +1,22 @@
 import React, { useState, useEffect } from "react";
 
 function Clock() {
-  const [timeEl, setTimeEl] = useState(new Date().toLocaleTimeString());
-  
+  const [time, setTime] = useState(new Date().toLocaleTimeString());
+
   useEffect(() => {
-    const setInterval = setTimeout(setTimeEl, 1000);
-    setTimeEl(setInterval);
-    return () => clearTimeout(setInterval);
-  }, [timeEl]);
+    const intervalId = setInterval(() => {
+      setTime(new Date.toLocaleTimeString());
+    }, 1000);
+
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []);
 
   return (
     <div>
       <h1>Clock</h1>
-      <h2>Time : {timeEl}</h2>
+      <h2>Time : {time}</h2>
     </div>
   );
 }
