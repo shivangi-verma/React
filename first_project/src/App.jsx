@@ -5,6 +5,7 @@ import WatchCount from "./components/WatchCount";
 import PrevCount from "./components/PrevCount";
 import TitleUpdater from "./components/TitleUpdater";
 import AutoFocusInput from "./components/AutoFocusInput";
+import Clock from "./components/Clock";
 
 function App() {
   const username = "chai";
@@ -15,7 +16,8 @@ function App() {
       {/* <WatchCount /> */}
       {/* <PrevCount /> */}
       {/* <TitleUpdater/> */}
-      <AutoFocusInput />
+      {/* <AutoFocusInput /> */}
+      <Clock />
     </>
   );
 }
