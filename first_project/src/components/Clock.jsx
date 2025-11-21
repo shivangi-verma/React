@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 
 function Clock() {
-  const [timeEl, setTimeEl] = useState(Date);
+  const [timeEl, setTimeEl] = useState(new Date().toLocaleTimeString());
+  
   useEffect(() => {
     const setInterval = setTimeout(setTimeEl, 1000);
     setTimeEl(setInterval);
