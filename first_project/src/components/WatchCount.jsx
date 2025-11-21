@@ -25,7 +25,13 @@ function WatchCount() {
         Update Counter
       </button>
       <h1>Counter : {count} </h1>
-
+      <button
+        onClick={() => {
+          setCount(0);
+        }}
+      >
+        Reset
+      </button>
       <input
         type="text"
         placeholder="username"
