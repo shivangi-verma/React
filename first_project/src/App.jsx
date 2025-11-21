@@ -6,6 +6,7 @@ import PrevCount from "./components/PrevCount";
 import TitleUpdater from "./components/TitleUpdater";
 import AutoFocusInput from "./components/AutoFocusInput";
 import Clock from "./components/Clock";
+import PreviousNumber from "./components/PreviousNumber";
 
 function App() {
   const username = "chai";
@@ -17,7 +18,8 @@ function App() {
       {/* <PrevCount /> */}
       {/* <TitleUpdater/> */}
       {/* <AutoFocusInput /> */}
-      <Clock />
+      {/* <Clock /> */}
+      <PreviousNumber />
     </>
   );
 }
