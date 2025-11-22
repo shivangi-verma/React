@@ -7,11 +7,12 @@ import TitleUpdater from "./components/TitleUpdater";
 import AutoFocusInput from "./components/AutoFocusInput";
 import Clock from "./components/Clock";
 import PreviousNumber from "./components/PreviousNumber";
+import ParentCallback from "./components/ParentCallback";
 
 function App() {
   const username = "chai";
 
-  return (
+  return (  
     <>
       {/* <h1>chai aur react | {username} </h1> */}
       {/* <WatchCount /> */}
@@ -19,7 +20,8 @@ function App() {
       {/* <TitleUpdater/> */}
       {/* <AutoFocusInput /> */}
       {/* <Clock /> */}
-      <PreviousNumber />
+      {/* <PreviousNumber /> */}
+      <ParentCallback />
     </>
   );
 }
